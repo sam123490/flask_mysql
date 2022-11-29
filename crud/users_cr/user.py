@@ -17,6 +17,16 @@ class User:
         for user in results:
             users.append( cls(user) )
         return users
+    @classmethod
+    def display_user(cls, data):
+        query = "SELECT * FROM users WHERE id = %(id)s"
+        result = connectToMySQL('users_schema').query_db( query, data)
+        return result[0]
+    @classmethod
+    def delete_user(cls, data):
+        query = "DELETE FROM users WHERE id = %(id)s"
+        result = connectToMySQL('users_schema').query_db( query, data )
+        return result
     # class method to save our friend to the database
     @classmethod
     def save(cls, data ):
