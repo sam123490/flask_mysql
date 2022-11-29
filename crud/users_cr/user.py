@@ -19,17 +19,22 @@ class User:
         return users
     @classmethod
     def display_user(cls, data):
-        query = "SELECT * FROM users WHERE id = %(id)s"
+        query = "SELECT * FROM users WHERE id = %(id)s;"
         result = connectToMySQL('users_schema').query_db( query, data)
         return result[0]
     @classmethod
     def delete_user(cls, data):
-        query = "DELETE FROM users WHERE id = %(id)s"
+        query = "DELETE FROM users WHERE id = %(id)s;"
         result = connectToMySQL('users_schema').query_db( query, data )
         return result
     # class method to save our friend to the database
     @classmethod
-    def save(cls, data ):
+    def save(cls, data):
         query = "INSERT INTO users ( first_name , last_name , email , created_at, updated_at ) VALUES ( %(fname)s , %(lname)s , %(email)s , NOW() , NOW() );"
-        # data is a dictionary that will be passed into the save method from server.py
-        return connectToMySQL('users_schema').query_db( query, data )
+        result = connectToMySQL('users_schema').query_db( query, data )
+        return result
+    @classmethod
+    def update_user(cls, data):
+        query = "UPDATE users SET first_name=%(fname)s, last_name=%(lname)s, email=%(email)s WHERE id = %(id)s;"
+        result = connectToMySQL('users_schema').query_db( query, data)
+        return result

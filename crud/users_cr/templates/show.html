@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container mt-3">
-        <h1>User</h1>
+        <h1>User {{user.id}}</h1>
         <table class="table border-top border-3">
             <tr>
                 <th>Full Name:</th>
@@ -28,7 +28,7 @@
                 <td>{{user.updated_at}}</td>
             </tr>
         </table>
-        <a href="{{url_for('display_users')}}">Go Back</a>
+        <a href="/users" class="btn btn-primary">Go Back</a>
     </div>
 </body>
 </html>

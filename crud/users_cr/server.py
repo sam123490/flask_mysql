@@ -2,6 +2,10 @@ from flask import Flask, render_template, redirect, request
 from user import User
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+    return redirect('/users')
+
 @app.route('/users')
 def display_users():
     users = User.get_all()
@@ -39,6 +43,25 @@ def delete_user(id):
     User.delete_user(data)
     return redirect('/users')
 
-            
+@app.route('/users/edit/<int:id>')
+def edit_user(id):
+    data = {
+        "id": id
+    }
+    user = User.display_user(data)
+    print(user)
+    return render_template('edit.html', user=user)
+
+@app.route('/users/edit/<int:id>/push', methods=['POST'])
+def push_edit(id):
+    data = {
+        "fname": request.form["fname"],
+        "lname": request.form["lname"],
+        "email": request.form["email"],
+        "id": id
+    }
+    print(data)
+    User.update_user(data)
+    return redirect('/users')
 if __name__ == "__main__":
     app.run(debug=True)
