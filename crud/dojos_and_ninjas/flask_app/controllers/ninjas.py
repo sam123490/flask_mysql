@@ -19,3 +19,18 @@ def push_ninja():
     Ninja.save(data)
     dojo_id = data["dojo_id"]
     return redirect(f'/dojos/{dojo_id}')
+
+@app.route('/ninjas/edit/<int:dojo_id>/<int:ninja_id>')
+def edit_ninja(dojo_id, ninja_id):
+    return render_template('edit-ninja.html', dojo_id=dojo_id, ninja_id=ninja_id)
+
+@app.route('/ninjas/edit/<int:dojo_id>/<int:ninja_id>/push', methods=['POST'])
+def push_edit(dojo_id, ninja_id):
+    data = {
+        "fname": request.form['fname'],
+        "lname": request.form['lname'],
+        "age": request.form['age'],
+        "id": ninja_id
+    }
+    Ninja.update(data)
+    return redirect(f'/dojos/{dojo_id}')

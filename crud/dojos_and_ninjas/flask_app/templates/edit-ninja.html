@@ -9,15 +9,9 @@
 </head>
 <body>
     <div class="container mt-3" style="width: 500px;">
-        <h1>New Ninja</h1>
-        <form action="/ninjas/save" method="post">
+        <h2>Edit Ninja</h2>
+        <form action="/ninjas/edit/{{dojo_id}}/{{ninja_id}}/push" method="post">
             <!-- WHEN WE SUBMIT FORM HOW DO WE PASS DOJO ID -->
-            <label for="dojo" class="form-label">Dojo:</label>
-            <select name="dojo_id" id="dojo" class="form-select">
-                {% for each_dojo in dojos %}
-                <option value="{{each_dojo.id}}">{{each_dojo.name}}</option>
-                {% endfor %}
-            </select>
             <label for="fname" class="form-label mt-2">First Name:</label>
             <input name="fname" id="fname" type="text" class="form-control">
             <label for="lname" class="form-label mt-2">Last Name:</label>
@@ -26,7 +20,7 @@
             <input name="age" id="age" type="number" class="form-control">
             <input type="submit" class="btn btn-success mt-3">
         </form>
-        <a href="/dojos" class="btn btn-danger mt-2">Cancel</a>
+        <a href="/dojos/{{dojo_id}}" class="btn btn-danger mt-2">Cancel</a>
     </div>
 
 </body>
