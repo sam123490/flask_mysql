@@ -19,11 +19,11 @@ class Ninja():
         results = connectToMySQL('dojos_and_ninjas').query_db(query, data)
         return results
     
-    # @classmethod
-    # def delete(cls, data):
-    #     query = "DELETE FROM ninjas WHERE id = %(id)s"
-    #     results = connectToMySQL('dojos_and_ninjas').query_db(query, data)
-    #     return results
+    @classmethod
+    def delete(cls, data):
+        query = "DELETE FROM ninjas WHERE id = %(id)s"
+        results = connectToMySQL('dojos_and_ninjas').query_db(query, data)
+        return results
 
     @classmethod
     def update(cls, data):

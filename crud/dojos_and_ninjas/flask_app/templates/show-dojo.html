@@ -22,7 +22,10 @@
                 <td>{{each_ninja.first_name}}</td>
                 <td>{{each_ninja.last_name}}</td>
                 <td>{{each_ninja.age}}</td>
-                <td> <a href="/ninjas/edit/{{dojo.id}}/{{each_ninja.id}}">edit | </a> <a href="">delete</a> </td>
+                <td> 
+                    <a href="/ninjas/edit/{{dojo.id}}/{{each_ninja.id}}">edit | </a> 
+                    <a href="/ninjas/delete/{{dojo.id}}/{{each_ninja.id}}">delete</a>
+                </td>
             </tr>
             {% endfor %}
         </table>

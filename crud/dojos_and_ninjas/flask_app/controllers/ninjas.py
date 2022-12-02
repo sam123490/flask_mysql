@@ -34,3 +34,12 @@ def push_edit(dojo_id, ninja_id):
     }
     Ninja.update(data)
     return redirect(f'/dojos/{dojo_id}')
+
+@app.route('/ninjas/delete/<int:dojo_id>/<int:ninja_id>')
+def delete_ninja(dojo_id, ninja_id):
+    data = {
+        "id": ninja_id
+    }
+    Ninja.delete(data)
+    print(dojo_id)
+    return redirect(f'/dojos/{dojo_id}')
