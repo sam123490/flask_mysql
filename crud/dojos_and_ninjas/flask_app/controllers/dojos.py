@@ -3,7 +3,7 @@ from flask_app.models.dojo import Dojo
 from flask import render_template, request, redirect
 
 @app.route('/')
-def ok():
+def index():
     return redirect('/dojos')
 
 @app.route('/dojos')
@@ -18,3 +18,11 @@ def push_dojo():
     }
     Dojo.save(data)
     return redirect('/dojos')
+
+@app.route('/dojos/<int:dojo_id>')
+def view_one_dojo(dojo_id):
+    data = {
+        "dojo_id": dojo_id
+    }
+    dojo = Dojo.get_dojo(data)
+    return render_template('show-dojo.html')

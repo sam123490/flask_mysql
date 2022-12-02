@@ -21,7 +21,7 @@
         <table class="table table-striped border-top border-3">
             {% for each_dojo in dojos %}
             <tr>
-                <td>{{each_dojo.name}}</td>
+                <td><a href="/dojos/{{each_dojo.id}}">{{each_dojo.name}}</a></td>
             </tr>
             {% endfor %}
         </table>

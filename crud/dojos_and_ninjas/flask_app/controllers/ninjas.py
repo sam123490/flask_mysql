@@ -16,6 +16,5 @@ def push_ninja():
         "age": request.form['age'],
         "dojo_id": request.form['dojo_id']
     }
-    result = Ninja.save(data)
-    print(result)
+    Ninja.save(data)
     return redirect('/dojos')

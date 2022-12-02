@@ -14,8 +14,17 @@ class Dojo():
         dojos = []
         for each_dojo in results:
             dojos.append( cls(each_dojo) )
-        print("THIS IS OUR LIST OF OBJECTS -->", dojos)
+        print("THIS IS OUR LIST OF DOJOS AS OBJECTS -->", dojos)
         return dojos
+
+    @classmethod
+    def get_dojo(cls, data):
+        query = """
+                SELECT * FROM dojos 
+                LEFT JOIN ninjas ON ninjas.dojo_id = dojos.id
+                WHERE dojos.id= %(dojo_id)s;
+                """
+        return query
 
     @classmethod
     def save(cls, data):
@@ -23,14 +32,14 @@ class Dojo():
         results = connectToMySQL('dojos_and_ninjas').query_db(query, data)
         return results
 
-    @classmethod
-    def delete(cls, data):
-        query = ("DELETE FROM dojos WHERE id = %(id)s;")
-        results = connectToMySQL('dojos_and_ninjas').query_db(query, data)
-        return results
+    # @classmethod
+    # def delete(cls, data):
+    #     query = "DELETE FROM dojos WHERE id = %(id)s;"
+    #     results = connectToMySQL('dojos_and_ninjas').query_db(query, data)
+    #     return results
 
-    @classmethod
-    def update(cls, data):
-        query = "UPDATE dojos SET name= %(name)s WHERE id= %(id)s;"
-        result = connectToMySQL('dojos_and_ninjas').query_db(query, data)
-        return result
+    # @classmethod
+    # def update(cls, data):
+    #     query = "UPDATE dojos SET name= %(name)s WHERE id= %(id)s;"
+    #     result = connectToMySQL('dojos_and_ninjas').query_db(query, data)
+    #     return result
