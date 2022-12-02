@@ -30,3 +30,9 @@ class Ninja():
         query = "UPDATE ninjas SET first_name= %(fname)s, last_name= %(lname)s, age= %(age)s WHERE ninjas.id= %(id)s;"
         results = connectToMySQL('dojos_and_ninjas').query_db(query, data)
         return results
+
+    @classmethod
+    def get_ninja(cls, data):
+        query = "SELECT * FROM ninjas WHERE ninjas.id= %(id)s;"
+        results = connectToMySQL('dojos_and_ninjas').query_db(query, data)
+        return results

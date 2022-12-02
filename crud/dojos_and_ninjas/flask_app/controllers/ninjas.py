@@ -22,7 +22,11 @@ def push_ninja():
 
 @app.route('/ninjas/edit/<int:dojo_id>/<int:ninja_id>')
 def edit_ninja(dojo_id, ninja_id):
-    return render_template('edit-ninja.html', dojo_id=dojo_id, ninja_id=ninja_id)
+    data = {
+        "id": ninja_id
+    }
+    ninja = Ninja.get_ninja(data)
+    return render_template('edit-ninja.html', dojo_id=dojo_id, ninja_id=ninja_id, ninja=ninja[0])
 
 @app.route('/ninjas/edit/<int:dojo_id>/<int:ninja_id>/push', methods=['POST'])
 def push_edit(dojo_id, ninja_id):

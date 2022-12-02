@@ -13,11 +13,11 @@
         <form action="/ninjas/edit/{{dojo_id}}/{{ninja_id}}/push" method="post">
             <!-- WHEN WE SUBMIT FORM HOW DO WE PASS DOJO ID -->
             <label for="fname" class="form-label mt-2">First Name:</label>
-            <input name="fname" id="fname" type="text" class="form-control">
+            <input name="fname" id="fname" type="text" class="form-control" value="{{ninja.first_name}}">
             <label for="lname" class="form-label mt-2">Last Name:</label>
-            <input name="lname" id="lname" type="text" class="form-control">
+            <input name="lname" id="lname" type="text" class="form-control" value="{{ninja.last_name}}">
             <label for="age" class="form-label mt-2">Age:</label>
-            <input name="age" id="age" type="number" class="form-control">
+            <input name="age" id="age" type="number" class="form-control" value="{{ninja.age}}">
             <input type="submit" class="btn btn-success mt-3">
         </form>
         <a href="/dojos/{{dojo_id}}" class="btn btn-danger mt-2">Cancel</a>
