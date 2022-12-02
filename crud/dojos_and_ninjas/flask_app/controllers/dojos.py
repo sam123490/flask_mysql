@@ -25,4 +25,4 @@ def view_one_dojo(dojo_id):
         "dojo_id": dojo_id
     }
     dojo = Dojo.get_dojo(data)
-    return render_template('show-dojo.html')
+    return render_template('show-dojo.html', dojo=dojo)
