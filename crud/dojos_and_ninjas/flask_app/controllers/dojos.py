@@ -22,7 +22,24 @@ def push_dojo():
 @app.route('/dojos/<int:dojo_id>')
 def view_one_dojo(dojo_id):
     data = {
-        "dojo_id": dojo_id
+        "id": dojo_id
     }
     dojo = Dojo.get_dojo(data)
     return render_template('show-dojo.html', dojo=dojo)
+
+@app.route('/dojos/edit/<int:dojo_id>')
+def edit_dojo(dojo_id):
+    data = {
+        "id": dojo_id
+    }
+    dojo = Dojo.get_dojo(data)
+    return render_template('edit-dojo.html', dojo=dojo)
+
+@app.route('/dojos/edit/<int:dojo_id>/push', methods=['POST'])
+def push_dojo_edit(dojo_id):
+    data = {
+        "id": dojo_id,
+        "name": request.form['name']
+    }
+    Dojo.update(data)
+    return redirect(f"/dojos/{dojo_id}")

@@ -24,7 +24,7 @@ class Dojo():
         query = """
                 SELECT * FROM dojos 
                 LEFT JOIN ninjas ON ninjas.dojo_id = dojos.id
-                WHERE dojos.id= %(dojo_id)s;
+                WHERE dojos.id= %(id)s;
                 """
         results = connectToMySQL('dojos_and_ninjas').query_db(query, data)
         dojo = cls( results[0])
@@ -52,8 +52,8 @@ class Dojo():
     #     results = connectToMySQL('dojos_and_ninjas').query_db(query, data)
     #     return results
 
-    # @classmethod
-    # def update(cls, data):
-    #     query = "UPDATE dojos SET name= %(name)s WHERE id= %(id)s;"
-    #     result = connectToMySQL('dojos_and_ninjas').query_db(query, data)
-    #     return result
+    @classmethod
+    def update(cls, data):
+        query = "UPDATE dojos SET name= %(name)s WHERE id= %(id)s;"
+        result = connectToMySQL('dojos_and_ninjas').query_db(query, data)
+        return result

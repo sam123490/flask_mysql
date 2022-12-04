@@ -22,6 +22,7 @@
             {% for each_dojo in dojos %}
             <tr>
                 <td><a href="/dojos/{{each_dojo.id}}">{{each_dojo.name}}</a></td>
+                <td><a href="/dojos/edit/{{each_dojo.id}}">edit</a></td>
             </tr>
             {% endfor %}
         </table>
