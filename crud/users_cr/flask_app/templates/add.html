@@ -10,6 +10,13 @@
 <body>
     <h1 class="text-center mt-2">Add User</h1>
     <div class="container mt-2 rounded-1 border border-2 border-secondary" style="width: 300px;padding: 10px;">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <form action="/users/create" method="post">
             <label for="fname" class="form-label">First Name:</label>
             <input id="fname" name="fname" type="text" class="form-control">

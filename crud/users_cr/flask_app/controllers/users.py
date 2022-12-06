@@ -18,6 +18,8 @@ def add_user():
 
 @app.route('/users/create', methods=['POST'])
 def create_user():
+    if not User.validate_user(request.form):
+        return redirect('/users/new')
     data = {
         "fname": request.form["fname"],
         "lname": request.form["lname"],
