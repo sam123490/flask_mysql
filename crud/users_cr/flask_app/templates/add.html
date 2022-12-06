@@ -19,11 +19,11 @@
         {% endwith %}
         <form action="/users/create" method="post">
             <label for="fname" class="form-label">First Name:</label>
-            <input id="fname" name="fname" type="text" class="form-control">
+            <input id="fname" name="fname" type="text" class="form-control" value="{{session['fname']}}">
             <label for="lname" class="form-label mt-2">Last Name:</label>
-            <input id="lname" name="lname" type="text" class="form-control">
+            <input id="lname" name="lname" type="text" class="form-control" value="{{session['lname']}}">
             <label for="email" class="form-label mt-2">Email:</label>
-            <input id="email" name="email" type="text" class="form-control">
+            <input id="email" name="email" type="text" class="form-control" value="{{session['email']}}">
             <input type="submit" class="btn btn-success mt-2">
         </form>
         <a href="/users" class="btn btn-danger mt-2">Cancel</a>

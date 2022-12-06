@@ -50,6 +50,7 @@ class User:
             is_valid = False
         if len(user['lname']) < 1:
             flash("must input last name")
+            is_valid = False
         if not EMAIL_REGEX.match(user['email']):
             flash("invalid email address")
             is_valid = False

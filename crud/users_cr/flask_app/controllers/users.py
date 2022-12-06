@@ -1,5 +1,5 @@
 from flask_app import app
-from flask import render_template, redirect, request
+from flask import render_template, redirect, request, session
 from flask_app.models.user import User
 
 @app.route('/')
@@ -10,6 +10,7 @@ def index():
 def display_users():
     users = User.get_all()
     print(users)
+    session.clear()
     return render_template("index.html", all_users=users)
 
 @app.route('/users/new')
@@ -19,7 +20,11 @@ def add_user():
 @app.route('/users/create', methods=['POST'])
 def create_user():
     if not User.validate_user(request.form):
-        return redirect('/users/new')
+            session['fname'] = request.form['fname']
+            session['lname'] = request.form['lname']
+            session['email'] = request.form['email']
+            print("____SESSION SET UP____")
+            return redirect('/users/new')
     data = {
         "fname": request.form["fname"],
         "lname": request.form["lname"],
