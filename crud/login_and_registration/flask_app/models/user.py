@@ -17,7 +17,6 @@ class User:
 
     @classmethod
     def register_validation(cls, form):
-            # ADD VALIDATION TO CHECK IF EMAIL HAS ALREADY BEEN USED
         is_valid = True
         for field in form:
             if len(form[field]) < 1:
@@ -68,6 +67,16 @@ class User:
     @classmethod
     def get_by_email(cls, data):
         query = "SELECT * FROM users WHERE email= %(email)s;"
+        results = connectToMySQL(cls.DB).query_db(query,data)
+        data = results[0]
+        return cls(data)
+
+    @classmethod
+    def get_one(cls, user_id):
+        data = {
+            "user_id": user_id
+        }
+        query = "SELECT * FROM users WHERE users.id= %(user_id)s"
         results = connectToMySQL(cls.DB).query_db(query,data)
         data = results[0]
         return cls(data)

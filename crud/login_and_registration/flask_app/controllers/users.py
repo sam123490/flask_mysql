@@ -44,7 +44,9 @@ def log_in():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html')
+    if 'user_id' in session:
+        return render_template('dashboard.html', user=user.User.get_one(session['user_id']))
+    return redirect('/')
 
 @app.route('/logout')
 def logout():
