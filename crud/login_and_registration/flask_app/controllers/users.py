@@ -33,10 +33,10 @@ def log_in():
         data = { "email": request.form['email'] }
         user_in_db = user.User.get_by_email(data)
         if not user_in_db:
-            flash('Invalid Email/Password')
+            flash('Invalid Email/Password', 'log_in')
             return redirect('/')
         if not bcrypt.check_password_hash(user_in_db.password, request.form['password']):
-            flash('Invalid Email/Password')
+            flash('Invalid Email/Password', 'log_in')
             return redirect('/')
         session['user_id'] = user_in_db.id
         return redirect('/dashboard')

@@ -11,7 +11,7 @@
     <div class="container d-flex mt-5">
         <div class="container" style="width: 450px;">
             <h2 class="text-center">Register Today!</h2>
-            {% with messages = get_flashed_messages() %}
+            {% with messages = get_flashed_messages(category_filter=['register']) %}
                 {% if messages %}
                     {% for message in messages %}
                     <p>{{message}}</p>
@@ -38,6 +38,13 @@
         </div>
         <div class="container" style="width: 450px;">
             <h2 class="text-center">Log In</h2>
+            {% with messages = get_flashed_messages(category_filter=['log_in']) %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
             <form action="/login" method="post">
                 <label for="email" class="form-label">Email:</label>
                 <input id="email" name="email" type="text" class="form-control">

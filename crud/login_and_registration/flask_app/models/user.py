@@ -17,21 +17,22 @@ class User:
 
     @classmethod
     def register_validation(cls, form):
+            # ADD VALIDATION TO CHECK IF EMAIL HAS ALREADY BEEN USED
         is_valid = True
         for field in form:
             if len(form[field]) < 1:
                 is_valid = False
                 message =  f"{field} is required"
-                make_pretty = message.maketrans("_", " ")
-                flash(message.translate(make_pretty))
+                make_pretty = message.maketrans("_"," ")
+                flash(message.translate(make_pretty), 'register')
         if form['password'] != form['retype_password']:
-            flash('passwords do not match')
+            flash('passwords do not match', 'register')
             is_valid = False
         if len(form['password']) > 0 and len(form['password']) <= 5:
-            flash('password must at least 6 characters')
+            flash('password must at least 6 characters', 'register')
             is_valid = False
         if not EMAIL_REGEX.match(form['email']) and len(form['email']) > 0:
-            flash('email is invalid')
+            flash('email is invalid', 'register')
             is_valid = False
             # ADD VALIDATION TO CHECK IF EMAIL HAS ALREADY BEEN USED
         return is_valid
@@ -46,14 +47,9 @@ class User:
     @classmethod
     def log_in_validation(cls, form):
         is_valid = True
-        for field in form:
-            if len(form[field]) < 1:
-                is_valid = False
-                flash(f'{field} is required')
-        if not EMAIL_REGEX.match(form['email']) and len(form['email']) > 0:
-            flash('email is invalid')
+        if not EMAIL_REGEX.match(form['email']):
+            flash('Invalid Email/Password', 'log_in')
             is_valid = False
-            # ADD VALIDATION TO CHECK IF EMAIL HAS ALREADY BEEN USED
         return is_valid
 
     @classmethod
