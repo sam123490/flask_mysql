@@ -34,8 +34,21 @@ class User:
         if not EMAIL_REGEX.match(form['email']) and len(form['email']) > 0:
             flash('email is invalid', 'register')
             is_valid = False
-            # ADD VALIDATION TO CHECK IF EMAIL HAS ALREADY BEEN USED
+        users = cls.get_all()
+        for each_email in users:
+            if each_email.email == form['email']:
+                flash('this email has already been used', 'register')
+                is_valid = False
         return is_valid
+
+    @classmethod
+    def get_all(cls):
+        query = "SELECT * FROM users;"
+        users_from_db = connectToMySQL(cls.DB).query_db(query)
+        users = []
+        for each_row in users_from_db:
+            users.append(cls(each_row))
+        return users
 
     @classmethod
     def register_user(cls, data):
